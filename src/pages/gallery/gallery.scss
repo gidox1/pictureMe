@@ -1,0 +1,100 @@
+
+.mainGallery {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    // border: 1px solid red;
+}
+
+.imageLayout {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    width: 100%;
+    margin: 0 6%;
+}
+
+
+.likeLabel, .superLikeLabel, .blockIconLabel {
+    font-size: 13px;
+    font-family: helvetica;
+    font-weight: bold;
+}
+
+.superLikeLabel {
+    margin-left: -10px;
+}
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 90%;
+    border: 3px solid #dc7b2b;
+    overflow: hidden;
+    margin: 5% 5%;
+    border-radius: 5%;
+}
+
+
+.iconClass {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    width: 100%;
+    margin: auto;
+    // border: 1px solid red;
+    justify-content: space-around;
+    margin-top: 0;
+}
+
+.image {
+    height: 250px;
+    width: 80%;
+    margin: 3% auto;
+    border-radius: 5%;
+}
+
+
+.icon {
+    height: 20px;
+    width: 50px;
+}
+
+.iconAction, .likeIcon, .superLike, .blockIcon  {
+    display: flex;
+    flex-direction: column;
+}
+
+.likeIcon {
+    height: 45px;
+    width: 50px;
+    margin-top: -6px;
+}
+
+.superLike, .blockIcon {
+    height: 35px;
+    width: 45px;
+    margin-bottom: 2px;
+}
+
+
+
+@media (max-width:425px) {
+    .imageLayout {
+        display: grid;
+        grid-template-columns: repeat(1, 80%);
+        width: 100%;
+        margin: 0 5%;
+    }
+
+    .frame {
+        display: flex;
+        flex-direction: column;
+        height: 250px;
+        border: 3px solid #dc7b2b;
+        overflow: hidden;
+        border-radius: 5%;
+    }
+}
+
+

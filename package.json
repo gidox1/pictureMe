@@ -1,0 +1,48 @@
+{
+  "name": "pictureMe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "migrate": "knex migrate:latest",
+    "start": "npm run dev -- -p 9100",
+    "seed": "knex seed:run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gidox1/pictureMe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gidox1/pictureMe/issues"
+  },
+  "homepage": "https://github.com/gidox1/pictureMe#readme",
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "axios": "0.19.2",
+    "bcrypt": "4.0.1",
+    "body-parser": "^1.19.0",
+    "bookshelf": "0.14.2",
+    "cloudinary": "1.21.0",
+    "cors": "2.8.5",
+    "express": "^4.17.1",
+    "form-data": "^3.0.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "0.15.0",
+    "multer": "^1.4.2",
+    "mysql": "2.17.1",
+    "next": "9.3.5",
+    "next-routes": "^1.4.2",
+    "node-sass": "^4.13.1",
+    "nodemon": "2.0.3",
+    "prop-types": "^15.7.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "turbo-logger": "^1.1.9"
+  }
+}
