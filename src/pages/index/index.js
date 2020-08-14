@@ -92,8 +92,6 @@ class Index extends Component {
     }
 
     submitForm(e) {
-        console.log(this.state.input, 'clicker=d');
-        console.log(this.state.login, 'clicker=d');
         e.preventDefault();
         let userData;
         const signUpSlug = 'create';

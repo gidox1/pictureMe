@@ -5,6 +5,7 @@ const config = require('../src/config');
 const auth_key = config.auth_key;
 const BCRYPT_SALT_ROUNDS = 12;
 const bcrypt = require('bcrypt');
+const logger = require('turbo-logger').createStream({});
 
 
 class Authenticate {
@@ -25,7 +26,7 @@ class Authenticate {
                         expiresIn: '6h'
                     },
                     (err, token) => {
-                        if(err) console.log(err)
+                        if(err) logger.log(err)
                         return resolve(token);
                     }
                 )
@@ -44,7 +45,7 @@ class Authenticate {
                 return resolve(hashedPassword);
             })
             .catch(error => {
-                console.log(`Could'nt hash password`, error);
+                logger.log(`Could'nt hash password`, error);
             })
         })
         return hash
@@ -55,19 +56,17 @@ class Authenticate {
     * Bcrypt
     */
    async comparePassword(password, hash) {
-       console.log('comparing...', password, hash)
        const compare = await new Promise((resolve) => {
            bcrypt.compare(password, hash)
                 .then(result => {
-                    console.log('result', result);
+                    logger.log('result', result);
                     return resolve(result);
                 })
                 .catch(error => {
-                    console.log(error);
+                    logger.log(error);
                     return error;
                 })
        })
-       console.log(compare)
        return compare;
    }
 
@@ -75,13 +74,12 @@ class Authenticate {
     * Verify Token to Protect route
     */
    async VerifyToken(req, res, next) {
-       console.log("GOT IN HERE ", req.headers.authorization)
     const access_token = req.headers.authorization;
 
        if (access_token) {
             await jwt.verify(access_token, auth_key, function(err, decoded) {       
                 if (err) {
-                    console.log(err, 'failed to authenticate token')
+                    logger.log(err, 'failed to authenticate token')
                     return res.json({ success: false, message: 'Failed to authenticate token.' });
                 } else {
                 res.locals.user = decoded; 

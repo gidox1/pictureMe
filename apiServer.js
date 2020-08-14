@@ -7,18 +7,18 @@ const port = 9101;
 const bodyParser = require('body-parser');
 const apiRoute = require('./routes/apiRoutes');
 const cors = require('cors');
+const logger = require('turbo-logger').createStream({});
 
 app.use(cors())
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", url);
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-//     next();
-// });
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", url);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+});
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
 
-console.log('got here');
 app.use('/api', apiRoute)
 
 app.get('*', (req, res) => {
@@ -31,5 +31,5 @@ app.get('*', (req, res) => {
 const server = http.createServer(app);
 
 server.listen(port, () => {
-    console.log('server running on ', port);
+    logger.log('server running on ', port);
 })

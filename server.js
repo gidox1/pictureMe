@@ -37,5 +37,5 @@ nextApp
         });
     })
     .catch(e => {
-        console.log(e)
+        logger.log(e)
     })

@@ -23,7 +23,6 @@ class Gallery {
                     const user_id = parsedObject.id;
 
                     const data = await new utils().cloudinaryUploader(payload.buffer);
-                    console.log(data, "UPLOADED DATA", user_id)
                     const responseObject = {
                                 image_url: data.secure_url, uploaded_by: user_id, public_id: data.public_id
                             }

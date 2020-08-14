@@ -2,6 +2,7 @@
 const cloudinary = require('cloudinary').v2;
 const config = require('./config');
 cloudinary.config(config.cloudinary);
+const logger = require('turbo-logger').createStream({});
 
 
 
@@ -13,7 +14,7 @@ class Utils {
    async cloudinaryUploader(file) {
     return new Promise(async (resolve) => {
         return await cloudinary.uploader.upload_stream(file, (err, res) => {
-            if(err) {console.log('cloudinary error', err)}
+            if(err) {logger.log('cloudinary error', err)}
             resolve(res);
         })
         .end(file)

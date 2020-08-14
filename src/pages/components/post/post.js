@@ -6,6 +6,7 @@ import axios from 'axios';
 import config from './../../../config';
 import FormData from 'form-data'
 import fetch from 'isomorphic-unfetch'
+const logger = require('turbo-logger').createStream({});
 
 
 class Post extends Component {
@@ -23,7 +24,6 @@ class Post extends Component {
     }
 
     fileHandler(event) {
-        console.log(event.target.files[0], "FILES");
         this.setState({
             file: event.target.files[0]
         })
@@ -36,25 +36,23 @@ class Post extends Component {
     }
 
     uploadImage() {
-        console.log("calling onUpload")
         const formData = new FormData()
         if(!this.state.file) {
             return window.alert('Please select a file...')
         }
         formData.append('imageUploaded', this.state.file, this.state.file.name);
-        axios.post(`http://localhost:${config.port}/api/upload`, formData, {  
-            headers: {
-            'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+            axios.post(`http://localhost:${config.port}/api/upload`, formData, {  
+                headers: {
+                'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
           }})
         .then(res => {
-            console.log(res);
             if(res.data.hasOwnProperty('image_url')) {
                 this.setState({
                     imageUrl: res.data.image_url
                 })
             }
         })
-        .catch(err => console.log(err))
+        .catch(err => logger.log(err))
     }
 
 
@@ -63,7 +61,6 @@ class Post extends Component {
      */
     render() {
         const {imageData} = this.state;
-        console.log(this.props)
         return (
             <Fragment>
                 <div className={styles.main}>

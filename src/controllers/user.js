@@ -26,7 +26,6 @@ class User {
 
 
     login(req, res) {
-        console.log("LOGGING IN", req.body)
         if(req.body.hasOwnProperty('userData')) {
             const data = req.body.userData;
             if(!data.email || !data.password) {
@@ -34,7 +33,6 @@ class User {
             }
             return userService.login(data)
                 .then(Response => {
-                    console.log("LOGGED IN", Response)
                     return res.send(Response);
                 })
                 .catch(error => {
@@ -43,10 +41,6 @@ class User {
         }
     }
 
-    getUser (req, res) {
-        console.log(res.locals.user, "WITHIN GET USER")
-        // return res.locals
-    }
 }
 
 module.exports = User;

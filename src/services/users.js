@@ -16,7 +16,6 @@ class User {
     * Handles User Creation
     */
     async create(userDetails) {
-        console.log(userDetails, "BE")
         return new Promise(async (resolve, reject) => {
             const creds = {
                 email: userDetails.email,
@@ -38,7 +37,6 @@ class User {
                         return new UserModel().save(userDetails, {method: 'insert'})
                             .then(async () => {
                                 const login = await this.login(creds);
-                                console.log(login, "USER LOGGED IN OOOOOO ", login)                        
                                 return resolve(login);
                             })
                             .catch(err => {
